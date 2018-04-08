@@ -68,9 +68,9 @@ public class PlayerMovement : MonoBehaviour {
 				m_playerAttr.animator.SetFloat("LeftRight", -0.5f);
 			}
 
-			// if(Input.GetKey(KeyCode.Space)) {
-			// 	GameObject bullet = Instantiate(m_playerAttr.bullet, m_playerAttr.bulletSpawner.position, Quaternion.identity);
-			// }
+			if(Input.GetKeyDown(KeyCode.Space)) {
+				Shoot();
+			}
 		}
 
 		if(m_playerAttr.facingDirection == "Left") { 
@@ -88,6 +88,24 @@ public class PlayerMovement : MonoBehaviour {
 		if(m_playerAttr.facingDirection == "Up") { 
 			m_playerAttr.animator.SetFloat("UpDown", 0);
 			m_playerAttr.animator.SetFloat("LeftRight", 1);
+		}
+	}
+
+	void Shoot() {
+		if(m_playerAttr.playerName == "Player1") {
+			GameObject bulletPrefab = Instantiate(m_playerAttr.bullet, m_playerAttr.bulletSpawner.position, m_playerAttr.bulletSpawner.rotation);
+			
+			if(m_playerAttr.facingDirection == "Left") { bulletPrefab.GetComponent<Rigidbody>().AddForce(Vector3.left * m_playerAttr.fireRate); }
+			if(m_playerAttr.facingDirection == "Right") { bulletPrefab.GetComponent<Rigidbody>().AddForce(Vector3.right * m_playerAttr.fireRate); }
+			if(m_playerAttr.facingDirection == "Up") { bulletPrefab.GetComponent<Rigidbody>().AddForce(Vector3.forward * m_playerAttr.fireRate); }
+			if(m_playerAttr.facingDirection == "Down") { bulletPrefab.GetComponent<Rigidbody>().AddForce(-Vector3.forward * m_playerAttr.fireRate); }
+
+			if(m_playerAttr.facingDirection == "Up Right") { bulletPrefab.GetComponent<Rigidbody>().AddForce((Vector3.forward + Vector3.right) * m_playerAttr.fireRate); }
+			if(m_playerAttr.facingDirection == "Up Left") { bulletPrefab.GetComponent<Rigidbody>().AddForce((Vector3.forward + Vector3.left) * m_playerAttr.fireRate); }
+			if(m_playerAttr.facingDirection == "Down Right") { bulletPrefab.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.right) * m_playerAttr.fireRate); }
+			if(m_playerAttr.facingDirection == "Down Left") { bulletPrefab.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.left) * m_playerAttr.fireRate); }
+			
+			Destroy(bulletPrefab, 1.5f);
 		}
 	}
 
