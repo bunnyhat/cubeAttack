@@ -10,7 +10,8 @@ using UnityEngine;
 	public Transform bulletSpawner;
 	public GameObject bullet;
 	public string facingDirection;
-	public float fireRate;
+	public float bulletSpeed;
+	public float fireRate, resetFireRate;
 	private bool isDead = false;
 	public Animator animator;
 }
@@ -68,8 +69,10 @@ public class PlayerMovement : MonoBehaviour {
 				m_playerAttr.animator.SetFloat("LeftRight", -0.5f);
 			}
 
-			if(Input.GetKeyDown(KeyCode.Space)) {
-				Shoot();
+			if(Input.GetKeyDown(KeyCode.Space)) {	
+				m_playerAttr.fireRate -= Time.deltaTime;
+				Debug.Log(m_playerAttr.fireRate);
+				if(m_playerAttr.fireRate <= 0) { Shoot(); }
 			}
 		}
 
@@ -95,18 +98,19 @@ public class PlayerMovement : MonoBehaviour {
 		if(m_playerAttr.playerName == "Player1") {
 			GameObject bulletPrefab = Instantiate(m_playerAttr.bullet, m_playerAttr.bulletSpawner.position, m_playerAttr.bulletSpawner.rotation);
 			
-			if(m_playerAttr.facingDirection == "Left") { bulletPrefab.GetComponent<Rigidbody>().AddForce(Vector3.left * m_playerAttr.fireRate); }
-			if(m_playerAttr.facingDirection == "Right") { bulletPrefab.GetComponent<Rigidbody>().AddForce(Vector3.right * m_playerAttr.fireRate); }
-			if(m_playerAttr.facingDirection == "Up") { bulletPrefab.GetComponent<Rigidbody>().AddForce(Vector3.forward * m_playerAttr.fireRate); }
-			if(m_playerAttr.facingDirection == "Down") { bulletPrefab.GetComponent<Rigidbody>().AddForce(-Vector3.forward * m_playerAttr.fireRate); }
+			if(m_playerAttr.facingDirection == "Left") { bulletPrefab.GetComponent<Rigidbody>().AddForce(Vector3.left * m_playerAttr.bulletSpeed); }
+			if(m_playerAttr.facingDirection == "Right") { bulletPrefab.GetComponent<Rigidbody>().AddForce(Vector3.right * m_playerAttr.bulletSpeed); }
+			if(m_playerAttr.facingDirection == "Up") { bulletPrefab.GetComponent<Rigidbody>().AddForce(Vector3.forward * m_playerAttr.bulletSpeed); }
+			if(m_playerAttr.facingDirection == "Down") { bulletPrefab.GetComponent<Rigidbody>().AddForce(-Vector3.forward * m_playerAttr.bulletSpeed); }
 
-			if(m_playerAttr.facingDirection == "Up Right") { bulletPrefab.GetComponent<Rigidbody>().AddForce((Vector3.forward + Vector3.right) * m_playerAttr.fireRate); }
-			if(m_playerAttr.facingDirection == "Up Left") { bulletPrefab.GetComponent<Rigidbody>().AddForce((Vector3.forward + Vector3.left) * m_playerAttr.fireRate); }
-			if(m_playerAttr.facingDirection == "Down Right") { bulletPrefab.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.right) * m_playerAttr.fireRate); }
-			if(m_playerAttr.facingDirection == "Down Left") { bulletPrefab.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.left) * m_playerAttr.fireRate); }
+			if(m_playerAttr.facingDirection == "Up Right") { bulletPrefab.GetComponent<Rigidbody>().AddForce((Vector3.forward + Vector3.right) * m_playerAttr.bulletSpeed); }
+			if(m_playerAttr.facingDirection == "Up Left") { bulletPrefab.GetComponent<Rigidbody>().AddForce((Vector3.forward + Vector3.left) * m_playerAttr.bulletSpeed); }
+			if(m_playerAttr.facingDirection == "Down Right") { bulletPrefab.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.right) * m_playerAttr.bulletSpeed); }
+			if(m_playerAttr.facingDirection == "Down Left") { bulletPrefab.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.left) * m_playerAttr.bulletSpeed); }
 			
 			Destroy(bulletPrefab, 1.5f);
 		}
+		m_playerAttr.fireRate = 0.015f;
 	}
 
 }
