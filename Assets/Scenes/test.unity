@@ -218,15 +218,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114266430926472552, guid: 2c4db7b6867df744c97ab88e9e761804,
-        type: 2}
-      propertyPath: m_playerAttr.bulletSpeed
-      value: 165
-      objectReference: {fileID: 0}
-    - target: {fileID: 114266430926472552, guid: 2c4db7b6867df744c97ab88e9e761804,
-        type: 2}
-      propertyPath: m_playerAttr.fireRate
-      value: 0.015
+    - target: {fileID: 1031669698615116, guid: 2c4db7b6867df744c97ab88e9e761804, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c4db7b6867df744c97ab88e9e761804, type: 2}
@@ -373,15 +367,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114580982697867358, guid: 1461bf4c1bc1f70459016615ed6c0378,
-        type: 2}
-      propertyPath: m_playerAttr.bulletSpeed
-      value: 165
-      objectReference: {fileID: 0}
-    - target: {fileID: 114580982697867358, guid: 1461bf4c1bc1f70459016615ed6c0378,
-        type: 2}
-      propertyPath: m_playerAttr.fireRate
-      value: 0.015
+    - target: {fileID: 1922170914460092, guid: 1461bf4c1bc1f70459016615ed6c0378, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1461bf4c1bc1f70459016615ed6c0378, type: 2}
@@ -425,15 +413,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114308690444686086, guid: 81f9b9ac2af92544fa1e834ae1c1bf43,
-        type: 2}
-      propertyPath: m_playerAttr.bulletSpeed
-      value: 165
-      objectReference: {fileID: 0}
-    - target: {fileID: 114308690444686086, guid: 81f9b9ac2af92544fa1e834ae1c1bf43,
-        type: 2}
-      propertyPath: m_playerAttr.fireRate
-      value: 0.015
+    - target: {fileID: 1054786309690344, guid: 81f9b9ac2af92544fa1e834ae1c1bf43, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81f9b9ac2af92544fa1e834ae1c1bf43, type: 2}
@@ -477,15 +459,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114474620685200254, guid: 92566bb7a036dea49a3bf2766cab33c8,
-        type: 2}
-      propertyPath: m_playerAttr.bulletSpeed
-      value: 165
-      objectReference: {fileID: 0}
-    - target: {fileID: 114474620685200254, guid: 92566bb7a036dea49a3bf2766cab33c8,
-        type: 2}
-      propertyPath: m_playerAttr.fireRate
-      value: 0.015
+    - target: {fileID: 4732633234638208, guid: 92566bb7a036dea49a3bf2766cab33c8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92566bb7a036dea49a3bf2766cab33c8, type: 2}

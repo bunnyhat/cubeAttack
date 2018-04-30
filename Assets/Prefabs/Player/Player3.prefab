@@ -150,7 +150,8 @@ MonoBehaviour:
     bulletSpawner: {fileID: 0}
     bullet: {fileID: 1045370640879028, guid: a304e6db242021d4f9998e7d370ffc3c, type: 2}
     facingDirection: 
-    fireRate: 165
+    bulletSpeed: 165
+    fireRate: 0.015
     animator: {fileID: 0}
 --- !u!195 &195879382295276002
 NavMeshAgent:

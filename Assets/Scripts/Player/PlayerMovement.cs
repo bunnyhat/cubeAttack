@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable] public class PlayerAttributes {
+	[Header("Proerpties")]
 	public string playerName;
 	public Color playerColor;
 	public float playerHealth;
 	public float playerSpeed;
+	public string facingDirection;
+	public bool isDead = false;
+	public Animator animator;
+
+	[Header("Bullet")]
 	public Transform bulletSpawner;
 	public GameObject bullet;
-	public string facingDirection;
 	public float bulletSpeed;
-	public float fireRate, resetFireRate;
-	private bool isDead = false;
-	public Animator animator;
+	public float fireRate;
 }
 
 public class PlayerMovement : MonoBehaviour {
-	[SerializeField] private PlayerAttributes m_playerAttr;
+	public PlayerAttributes m_playerAttr;
+	private GameObject bulletPrefab;
 
 	MeshRenderer m_meshRenderer;
 	Rigidbody m_rigidbody;
@@ -29,11 +33,13 @@ public class PlayerMovement : MonoBehaviour {
 
 		m_playerAttr.playerColor = m_meshRenderer.material.color;
 		m_playerAttr.playerHealth = 100;
-		m_playerAttr.facingDirection = "Right";
+		if(m_playerAttr.playerName == "Player1") { m_playerAttr.facingDirection = "Down Left"; }
+		else if(m_playerAttr.playerName == "Player2") { m_playerAttr.facingDirection = "Down Right"; }
+		else if(m_playerAttr.playerName == "Player3") { m_playerAttr.facingDirection = "Up Left"; }
+		else if(m_playerAttr.playerName == "Player4") { m_playerAttr.facingDirection = "Up Right"; }
 	}
 
 	void Update() {
-		
 		if(m_playerAttr.playerName == "Player1") {
 			float moveHorizontal = Input.GetAxisRaw("Horizontal");
 			float moveVertical = Input.GetAxisRaw("Vertical");
@@ -71,7 +77,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			if(Input.GetKeyDown(KeyCode.Space)) {	
 				m_playerAttr.fireRate -= Time.deltaTime;
-				Debug.Log(m_playerAttr.fireRate);
+				// Debug.Log(m_playerAttr.fireRate);
 				if(m_playerAttr.fireRate <= 0) { Shoot(); }
 			}
 		}
@@ -96,7 +102,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Shoot() {
 		if(m_playerAttr.playerName == "Player1") {
-			GameObject bulletPrefab = Instantiate(m_playerAttr.bullet, m_playerAttr.bulletSpawner.position, m_playerAttr.bulletSpawner.rotation);
+			bulletPrefab = Instantiate(m_playerAttr.bullet, m_playerAttr.bulletSpawner.position, m_playerAttr.bulletSpawner.rotation);
 			
 			if(m_playerAttr.facingDirection == "Left") { bulletPrefab.GetComponent<Rigidbody>().AddForce(Vector3.left * m_playerAttr.bulletSpeed); }
 			if(m_playerAttr.facingDirection == "Right") { bulletPrefab.GetComponent<Rigidbody>().AddForce(Vector3.right * m_playerAttr.bulletSpeed); }
@@ -108,7 +114,7 @@ public class PlayerMovement : MonoBehaviour {
 			if(m_playerAttr.facingDirection == "Down Right") { bulletPrefab.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.right) * m_playerAttr.bulletSpeed); }
 			if(m_playerAttr.facingDirection == "Down Left") { bulletPrefab.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.left) * m_playerAttr.bulletSpeed); }
 			
-			Destroy(bulletPrefab, 1.5f);
+			// Destroy(bulletPrefab, 1.5f);
 		}
 		m_playerAttr.fireRate = 0.015f;
 	}
